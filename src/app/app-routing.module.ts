@@ -14,6 +14,10 @@ const routes: Routes = [
   {
     path: 'result',
     loadChildren: () => import('./pages/result/result.module').then( m => m.ResultPageModule)
+  },
+  {
+    path: 'result2',
+    loadChildren: () => import('./pages/result2/result2.module').then( m => m.Result2PageModule)
   }
 ];
 
