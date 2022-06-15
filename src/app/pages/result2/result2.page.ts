@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
-declare var google: any;
 
 @Component({
   selector: 'app-result2',
@@ -17,19 +16,21 @@ export class Result2Page implements OnInit {
     private router: Router
   ) { }
 
-  ionViewDidEnter(){
-    this.geo.getCurrentPosition().then((res)=>{
-      this.map = new google.maps.Map(document.getElementById("map"), {
-        center: { lat: res.coords.latitude, lng: res.coords.longitude },
-        zoom: 10,
-      });
+  // ionViewDidEnter(){
+  //   this.geo.getCurrentPosition().then((res)=>{
+  //     this.map = new google.maps.Map(document.getElementById("map"), {
+  //       center: { lat: res.coords.latitude, lng: res.coords.longitude },
+  //       zoom: 10,
+  //     });
 
 
-    }).catch(e=>{
-      console.log(e);
-    })
+  //   }).catch(e=>{
+  //     console.log(e);
+  //   })
     
-  }
+  // } 
+
+
   ngOnInit() {
   }
 
