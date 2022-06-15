@@ -1,9 +1,13 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>result2</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Result for distance</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-
+<ion-content [fullscreen]="true">
+  <h2>The distance between the two locations is</h2>
+  <div id="map" style="height: 80%;"></div>
 </ion-content>

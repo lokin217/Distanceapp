@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 
 declare var google: any;
@@ -9,11 +10,21 @@ declare var google: any;
   styleUrls: ['./result.page.scss'],
 })
 export class ResultPage implements OnInit {
+  // distance: any = [
+  //   {distance}
+
+  // ];
   map:any;
 
   constructor(
-    private geo: Geolocation
+    private geo: Geolocation,
+    private router: Router
   ) { }
+
+  gotoresult2(){
+    // this.router.navigateByUrl('/result2')
+    this.router.navigate(['/result2'])
+  }
 
   ionViewDidEnter(){
     this.geo.getCurrentPosition().then((res)=>{

@@ -4,9 +4,32 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content [fullscreen]="true">
   <div id="map" style="height: 80%;">
 
   </div>
+
+  <div class="form-group">
+    <label for="from"></label>
+    <div class="col-xs-4">
+      <input type="text" id="from" placeholder="Location1" class="form-control">
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="to"></label>
+    <div class="col-xs-4">
+      <input type="text" id="to" placeholder="Location2" class="form-control">
+    </div>
+  </div>
+
+  <ion-button routerLink="/result2"> Calculate </ion-button>
+  <ion-list>
+    <ion-item >
+      <ion-label>
+
+      </ion-label>
+    </ion-item>
+  </ion-list>
 
 </ion-content>
