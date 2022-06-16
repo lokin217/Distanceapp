@@ -4,48 +4,28 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- including the map -->
+
 <ion-content [fullscreen]="true">
   <div id="map" style="height: 60%;">
 
   </div>
 
-  <!-- <div class="form-group">
-    <label for="from"></label>
-    <div class="col-xs-4">
-      <input type="text" id="from" placeholder="Location1" class="form-control">
-    </div>
-  </div> -->
 
+<!-- making ion items for getting user input. ngModel halps bind the value of an input field to the ts file -->
   <ion-item>
-    <ion-label>origin</ion-label>
+    <ion-label position="floating">Origin</ion-label>
     <ion-input [(ngModel)]="input1"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label>destination</ion-label>
+    <ion-label position="floating">Destination</ion-label>
     <ion-input [(ngModel)]="input2"></ion-input>
   </ion-item>
 
-  <!-- <div class="form-group">
-    <label for="to"></label>
-    <div class="col-xs-4">
-      <input type="text" id="to" placeholder="Location2" class="form-control">
-    </div>
-  </div> -->
+<!-- making a button to navigate to the next page   -->
 
   <ion-button (click)="FindingDistance()"> calculate </ion-button>
   <!-- <ion-button routerLink = "/result2"> result </ion-button> -->
-
-
-  <!-- <ion-button routerLink="/result2">find distance</ion-button>  -->
-
-  <!-- <ion-list>
-    <ion-item *ngFor="let d for distance" routerLink="/result2">
-      <ion-label>
-        <h3>{d.title}</h3>
-        <p>{d.price}</p>
-      </ion-label>
-    </ion-item>
-  </ion-list> -->
 
 </ion-content>

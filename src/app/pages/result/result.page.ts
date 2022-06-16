@@ -19,7 +19,7 @@ declare var google: any;
   styleUrls: ['./result.page.scss'],
 })
 export class ResultPage implements OnInit {
-
+//the user inputs from the html page
   input1;
   input2;
 
@@ -41,10 +41,14 @@ export class ResultPage implements OnInit {
     })
   }
 
+  //tried a navigation method to next page (not part of main code)
+
   gotoresult2(){
     //this.router.navigateByUrl('/result2')
     this.router.navigate(['/result2'],)
   }
+
+  //finding distance function helps find the distance between two user inputs and uses navigation extras to move the final value to the next page
 
   FindingDistance(){
 
@@ -63,7 +67,7 @@ export class ResultPage implements OnInit {
 
         console.log(response.rows[0].elements[0].distance.text); 
         const dist = response.rows[0].elements[0].distance.text;
-        let navigationExtras: NavigationExtras = {
+        let navigationExtras: NavigationExtras = {         //state holds the value belonging to the current component
           state: {
             x : dist
 
@@ -74,38 +78,31 @@ export class ResultPage implements OnInit {
       })
 
       // Callback function used to process Distance Matrix response
-      function callback(response, status) {
-        // if (status !== "OK") {
-        //   alert("Error with distance matrix");
-        //   return;
-        // }
-        //var json = JSON.parse(response);
-        console.log(response.rows[0].elements[0].distance.text); 
-        const dist = response.rows[0].elements[0].distance.text;
-        let navigationExtras: NavigationExtras = {
-          state: {
-            x : dist
+      // function callback(response, status) {
+      //   // if (status !== "OK") {
+      //   //   alert("Error with distance matrix");
+      //   //   return;
+      //   // }
+      //   //var json = JSON.parse(response);
+      //   console.log(response.rows[0].elements[0].distance.text); 
+      //   const dist = response.rows[0].elements[0].distance.text;
+      //   let navigationExtras: NavigationExtras = {
+      //     state: {
+      //       x : dist
 
-          }
-        };
-
-        
-         
-      }
-
-      
-
-
+      //     }
+      //   }; 
+      // }
 
 
   };
 
    
+  // another method of calculating distance, not included in main code
+  DistanceCalculation(){}
 
-  DistanceCalculation(){
-
-  }
-
+  
+  //this following part loads the current position using a marker on a map to show geo position
   ionViewDidEnter(){
     this.geo.getCurrentPosition().then((res)=>{
       this.map = new google.maps.Map(document.getElementById("map"), {
