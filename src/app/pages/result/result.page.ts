@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 import { IonInput } from '@ionic/angular';
 import {
@@ -9,6 +9,7 @@ import {
   MapGeocoderResponse,
 } from '@angular/google-maps';
 import {Platform} from '@ionic/angular';
+import { Capabilities } from 'protractor';
 
 declare var google: any;
 
@@ -21,6 +22,7 @@ export class ResultPage implements OnInit {
 
   input1;
   input2;
+
 
   @ViewChild('autocomplete') autocomplete: IonInput;
   @ViewChild('search') public searchElementRef!: ElementRef;
@@ -40,24 +42,36 @@ export class ResultPage implements OnInit {
   }
 
   gotoresult2(){
-    console.log('hello world')
-     //this.router.navigateByUrl('/result2')
-    //this.router.navigate(['/result2'])
+    //this.router.navigateByUrl('/result2')
+    this.router.navigate(['/result2'],)
   }
 
   FindingDistance(){
 
-    const service = new google.maps.DistanceMatrixService(); // instantiate Distance Matrix service
+    const service = new google.maps.DistanceMatrixService(); // Distance Matrix service
       const matrixOptions = {
-        // origins: ["utrecht"], // location 1
-        // destinations: ["Rotterdam"], // location 2
         origins: [this.input1], // location 1
         destinations: [this.input2], // location 2
         travelMode: 'DRIVING',
         unitSystem: google.maps.UnitSystem.IMPERIAL
       };
       // Call Distance Matrix service
-      service.getDistanceMatrix(matrixOptions, callback);
+      //service.getDistanceMatrix(matrixOptions, callback);
+
+      service.getDistanceMatrix(matrixOptions)
+      .then((response) => {
+
+        console.log(response.rows[0].elements[0].distance.text); 
+        const dist = response.rows[0].elements[0].distance.text;
+        let navigationExtras: NavigationExtras = {
+          state: {
+            x : dist
+
+          }
+        };
+
+        this.router.navigate(['/result2'], navigationExtras);
+      })
 
       // Callback function used to process Distance Matrix response
       function callback(response, status) {
@@ -66,13 +80,27 @@ export class ResultPage implements OnInit {
         //   return;
         // }
         //var json = JSON.parse(response);
-        console.log(response.rows[0].elements[0].distance.text);        
+        console.log(response.rows[0].elements[0].distance.text); 
+        const dist = response.rows[0].elements[0].distance.text;
+        let navigationExtras: NavigationExtras = {
+          state: {
+            x : dist
+
+          }
+        };
+
+        
+         
       }
+
+      
 
 
 
 
   };
+
+   
 
   DistanceCalculation(){
 

@@ -33,15 +33,19 @@
     </div>
   </div> -->
 
-  <ion-button (click)="FindingDistance()"> find distance </ion-button>
+  <ion-button (click)="FindingDistance()"> calculate </ion-button>
+  <!-- <ion-button routerLink = "/result2"> result </ion-button> -->
+
+
   <!-- <ion-button routerLink="/result2">find distance</ion-button>  -->
 
-  <ion-list>
-    <ion-item >
+  <!-- <ion-list>
+    <ion-item *ngFor="let d for distance" routerLink="/result2">
       <ion-label>
-
+        <h3>{d.title}</h3>
+        <p>{d.price}</p>
       </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 
 </ion-content>

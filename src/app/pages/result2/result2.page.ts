@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
+import { NavParams } from '@ionic/angular';
+
+
 
 
 @Component({
@@ -11,24 +14,25 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 export class Result2Page implements OnInit {
   map:any;
 
+  distVal;
+
   constructor(
     private geo: Geolocation,
-    private router: Router
-  ) { }
+    private router: Router,
+    private route:ActivatedRoute
+  ) {
+    this.router.routerState.root.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
 
-  // ionViewDidEnter(){
-  //   this.geo.getCurrentPosition().then((res)=>{
-  //     this.map = new google.maps.Map(document.getElementById("map"), {
-  //       center: { lat: res.coords.latitude, lng: res.coords.longitude },
-  //       zoom: 10,
-  //     });
+        this.distVal = this.router.getCurrentNavigation().extras.state.x; 
+        console.log('got from other page: '+this.router.getCurrentNavigation().extras.state.x)
+      }
+    });
+  }
 
 
-  //   }).catch(e=>{
-  //     console.log(e);
-  //   })
-    
-  // } 
+
+
 
 
   ngOnInit() {
