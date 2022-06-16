@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Distance Finding App </ion-title>
+    <ion-title color="success">Distance Finding App </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -14,18 +14,18 @@
 
 <!-- making ion items for getting user input. ngModel halps bind the value of an input field to the ts file -->
   <ion-item>
-    <ion-label position="floating">Origin</ion-label>
+    <ion-label position="floating" color="secondary">Origin</ion-label>
     <ion-input [(ngModel)]="input1"></ion-input>
   </ion-item>
 
   <ion-item>
-    <ion-label position="floating">Destination</ion-label>
+    <ion-label position="floating" color="secondary">Destination</ion-label>
     <ion-input [(ngModel)]="input2"></ion-input>
   </ion-item>
 
 <!-- making a button to navigate to the next page   -->
 
-  <ion-button (click)="FindingDistance()"> calculate </ion-button>
+  <ion-button (click)="FindingDistance()" expand="block"> calculate </ion-button>
   <!-- <ion-button routerLink = "/result2"> result </ion-button> -->
 
 </ion-content>
