@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, NgZone} from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
-import { IonInput } from '@ionic/angular';
+//import { IonInput } from '@ionic/angular';
 import {
   GoogleMap,
   MapInfoWindow,
@@ -9,7 +9,7 @@ import {
   MapGeocoderResponse,
 } from '@angular/google-maps';
 import {Platform} from '@ionic/angular';
-import { Capabilities } from 'protractor';
+//import { Capabilities } from 'protractor';
 
 declare var google: any;
 
@@ -19,21 +19,21 @@ declare var google: any;
   styleUrls: ['./result.page.scss'],
 })
 export class ResultPage implements OnInit {
-//the user inputs from the html page
+//declaring the variables, the user inputs from the html page
   input1;
   input2;
 
 
-  @ViewChild('autocomplete') autocomplete: IonInput;
-  @ViewChild('search') public searchElementRef!: ElementRef;
+  //@ViewChild('autocomplete') autocomplete: IonInput;
+  //@ViewChild('search') public searchElementRef!: ElementRef;
 
   map:any;
 
   constructor(
     private geo: Geolocation,
     private router: Router,
-    private ngZone: NgZone, 
-    private geoCoder: MapGeocoder,
+    //private ngZone: NgZone, 
+    //private geoCoder: MapGeocoder,
     public platofrm: Platform,
   ) { 
     this.platofrm.ready().then(()=>{
@@ -41,14 +41,6 @@ export class ResultPage implements OnInit {
     })
   }
 
-  //tried a navigation method to next page (not part of main code)
-
-  gotoresult2(){
-    //this.router.navigateByUrl('/result2')
-    this.router.navigate(['/result2'],)
-  }
-
-  //finding distance function helps find the distance between two user inputs and uses navigation extras to move the final value to the next page
 
   FindingDistance(){
 
@@ -60,39 +52,22 @@ export class ResultPage implements OnInit {
         unitSystem: google.maps.UnitSystem.IMPERIAL
       };
       // Call Distance Matrix service
-      //service.getDistanceMatrix(matrixOptions, callback);
+      //service.getDistanceMatrix(matrixOptions, callback);        // callback functions were used earlier and caused problems and hence 'then is used to recieve api calls
 
       service.getDistanceMatrix(matrixOptions)
       .then((response) => {
 
-        console.log(response.rows[0].elements[0].distance.text); 
-        const dist = response.rows[0].elements[0].distance.text;
-        let navigationExtras: NavigationExtras = {         //state holds the value belonging to the current component
+        console.log(response.rows[0].elements[0].distance.text);    // the value of the distance apprears in the console log
+        const dist = response.rows[0].elements[0].distance.text;    // constant dist does not change, the same value will remain throughout the operation
+        let navigationExtras: NavigationExtras = {                  // state holds the value belonging to the current component
           state: {
             x : dist
 
           }
         };
 
-        this.router.navigate(['/result2'], navigationExtras);
+        this.router.navigate(['/result2'], navigationExtras);        //takes this object value to the next page of result2
       })
-
-      // Callback function used to process Distance Matrix response
-      // function callback(response, status) {
-      //   // if (status !== "OK") {
-      //   //   alert("Error with distance matrix");
-      //   //   return;
-      //   // }
-      //   //var json = JSON.parse(response);
-      //   console.log(response.rows[0].elements[0].distance.text); 
-      //   const dist = response.rows[0].elements[0].distance.text;
-      //   let navigationExtras: NavigationExtras = {
-      //     state: {
-      //       x : dist
-
-      //     }
-      //   }; 
-      // }
 
 
   };
@@ -119,35 +94,10 @@ export class ResultPage implements OnInit {
     }).catch(e=>{
       console.log(e);
     })
-
-    // this.autocomplete.getInputElement().then((ref: any) => {
-    //   const autocomplete = new google.maps.places.Autocomplete(ref);
-    //   autocomplete.addListener('Location1', ()=>{
-    //     console.log(autocomplete.getPlace());
-    //   })
-    // })
     
   }
 
-  // ngAfterViewInit(): void {
-  //   // Binding autocomplete to search input control
-  //   let autocomplete = new google.maps.places.Autocomplete(
-  //     this.searchElementRef.nativeElement
-  //   );
-
-  //   autocomplete.addListener('place_changed', () => {
-  //     this.ngZone.run(() => {
-  //       //get the place result
-  //       let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-  //     });
-  //   });
-  // }
-
-
   ngOnInit() {
   }
-
-
 
 }
