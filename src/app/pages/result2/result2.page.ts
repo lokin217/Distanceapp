@@ -10,15 +10,15 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 })
 export class Result2Page implements OnInit {
   map:any;
-  distVal;
+  distVal: any;
 
   constructor(
-    private geo: Geolocation,
+    //private geo: Geolocation,
     private router: Router,
-    private route:ActivatedRoute
+    //private route:ActivatedRoute
   ) {
     this.router.routerState.root.queryParams.subscribe(params => {      // receiving the value of distance
-      if (this.router.getCurrentNavigation().extras.state) {
+      if (this.router.getCurrentNavigation().extras.state) {            // if statement is included to ceck if the value exists or not, to make sure it is not null
 
         this.distVal = this.router.getCurrentNavigation().extras.state.x; 
         //console.log('got from other page: '+this.router.getCurrentNavigation().extras.state.x)
